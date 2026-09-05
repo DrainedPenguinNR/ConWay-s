@@ -7,9 +7,26 @@ public class Simulation
     Grid grid = new Grid();
     Grid tempGrid = new Grid();
 
+    bool run = false;
+
     public Simulation()
     {
         grid.FillRandomly();
+    }
+
+    public void Start()
+    {
+        run = true;
+    }
+
+    public void Stop()
+    {
+        run = false;
+    }
+
+    public bool IsRunning()
+    {
+        return run;
     }
 
     public void Draw()
@@ -38,40 +55,44 @@ public class Simulation
 
     public void Update()
     {
-        for(int x = 0; x < grid.GetRows(); x++)
+        if (IsRunning())
         {
-            for(int y = 0; y < grid.GetCols(); y++)
+            for(int x = 0; x < grid.GetRows(); x++)
             {
-                int liveNeighbors = NeighborCount(x, y);
-                bool cellValue = grid.GetCellValue(x, y);
+                for(int y = 0; y < grid.GetCols(); y++)
+                {
+                    int liveNeighbors = NeighborCount(x, y);
+                    bool cellValue = grid.GetCellValue(x, y);
 
-                if (cellValue)
-                {
-                    if(liveNeighbors < gSim.minNeighbors || liveNeighbors > gSim.maxNeighbors)
+                    if (cellValue)
                     {
-                        tempGrid.SetCellValue(x, y, false);
+                        if(liveNeighbors < gSim.minNeighbors || liveNeighbors > gSim.maxNeighbors)
+                        {
+                            tempGrid.SetCellValue(x, y, false);
+                        }
+                        else
+                        {
+                            tempGrid.SetCellValue(x, y, true);
+                        }
                     }
                     else
                     {
-                        tempGrid.SetCellValue(x, y, true);
-                    }
-                }
-                else
-                {
-                    if(liveNeighbors == gSim.maxNeighbors)
-                    {
-                        tempGrid.SetCellValue(x, y, true);
-                    }
-                    else
-                    {
-                        tempGrid.SetCellValue(x, y, false);
+                        if(liveNeighbors == gSim.maxNeighbors)
+                        {
+                            tempGrid.SetCellValue(x, y, true);
+                        }
+                        else
+                        {
+                            tempGrid.SetCellValue(x, y, false);
+                        }
                     }
                 }
             }
+            Grid oldGrid = grid;
+            grid = tempGrid;
+            tempGrid = oldGrid;
         }
-        Grid oldGrid = grid;
-        grid = tempGrid;
-        tempGrid = oldGrid;
+
     }
     
 }

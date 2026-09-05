@@ -4,11 +4,12 @@ namespace GlobalVariables
 {
     public static class gVar
     {
-        public static int screenWidth = 750;
-        public static int screenHeight = 750;
+        public static int screenWidth = 1080;
+        public static int screenHeight = 1080;
         public static int fps = 12;
+        public static int MinFPS = 5;
 
-        public static int cellSize = 25;
+        public static int cellSize = 10;
     }
 
     public static class gCol
@@ -28,6 +29,6 @@ namespace GlobalVariables
 
         public static int minNeighbors = 2;
         public static int maxNeighbors = 3;
-        public static int randomFill = 3;
+        public static int randomFill = 4;
     }
 }
