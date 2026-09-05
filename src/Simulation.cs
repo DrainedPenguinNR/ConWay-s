@@ -4,11 +4,12 @@ namespace GlobalVariables;
 
 public class Simulation
 {
-
     Grid grid = new Grid();
-    public static void RunSim(int width, int height, int cellSize)
+    Grid tempGrid = new Grid();
+
+    public Simulation()
     {
-        
+        grid.FillRandomly();
     }
 
     public void Draw()
@@ -37,6 +38,38 @@ public class Simulation
 
     public void Update()
     {
-        
+        for(int x = 0; x < grid.GetRows(); x++)
+        {
+            for(int y = 0; y < grid.GetCols(); y++)
+            {
+                int liveNeighbors = NeighborCount(x, y);
+                bool cellValue = grid.GetCellValue(x, y);
+
+                if (cellValue)
+                {
+                    if(liveNeighbors < gSim.minNeighbors || liveNeighbors > gSim.maxNeighbors)
+                    {
+                        tempGrid.SetCellValue(x, y, false);
+                    }
+                    else
+                    {
+                        tempGrid.SetCellValue(x, y, true);
+                    }
+                }
+                else
+                {
+                    if(liveNeighbors == 3)
+                    {
+                        tempGrid.SetCellValue(x, y, true);
+                    }
+                    else
+                    {
+                        tempGrid.SetCellValue(x, y, false);
+                    }
+                }
+            }
+        }
+        grid = tempGrid;
     }
+    
 }

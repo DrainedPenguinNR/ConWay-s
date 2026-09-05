@@ -66,4 +66,16 @@ public class Grid
         return cols;
     }
 
+    public void FillRandomly()
+    {
+        Random rand = new Random();
+        for (int x = 0; x < rows; x++)
+        {
+            for (int y = 0; y < cols; y++)
+            {
+                grid[x, y] = rand.Next(2) == 0;
+            }
+        }
+    }
+
 }

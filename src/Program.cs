@@ -21,6 +21,7 @@ public class Program
             //1. EventHandling
 
             //2. Update
+            sim.Update();
 
             //3. Draw
             Raylib.BeginDrawing();
