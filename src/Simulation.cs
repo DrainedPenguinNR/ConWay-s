@@ -58,7 +58,7 @@ public class Simulation
                 }
                 else
                 {
-                    if(liveNeighbors == 3)
+                    if(liveNeighbors == gSim.maxNeighbors)
                     {
                         tempGrid.SetCellValue(x, y, true);
                     }
@@ -69,7 +69,9 @@ public class Simulation
                 }
             }
         }
+        Grid oldGrid = grid;
         grid = tempGrid;
+        tempGrid = oldGrid;
     }
     
 }

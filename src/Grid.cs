@@ -73,7 +73,7 @@ public class Grid
         {
             for (int y = 0; y < cols; y++)
             {
-                grid[x, y] = rand.Next(2) == 0;
+                grid[x, y] = rand.Next(gSim.randomFill) == 0;
             }
         }
     }

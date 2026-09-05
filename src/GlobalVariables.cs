@@ -28,5 +28,6 @@ namespace GlobalVariables
 
         public static int minNeighbors = 2;
         public static int maxNeighbors = 3;
+        public static int randomFill = 3;
     }
 }
