@@ -2,22 +2,31 @@
 
 namespace GlobalVariables;
 
+/*
+    This file contains the Program , which is the entry point of the application.
+    It initializes the Raylib window, sets up the simulation, and handles user input and rendering in a loop.
+    The class uses the Simulation class to manage the Game of Life simulation and provides controls for starting, stopping, and modifying the simulation.
+*/
+
 public class Program
 {
     public static void Main()
     {
+        // Initialize Raylib window and set target FPS
         int fps = gVar.fps;
+        bool clickedThisFrame = false;
         Raylib.InitWindow(gVar.screenWidth, gVar.screenHeight, "Game Of Life in C#");
         Raylib.SetTargetFPS(gVar.fps);
 
         //Initialize Simulator
         Simulation sim = new Simulation();
 
-
         while (!Raylib.WindowShouldClose())
         {
             //Main Loop
             //1. EventHandling
+
+            // Handle mouse input for toggling cell values
             if(Raylib.IsMouseButtonDown(MouseButton.Left))
             {
                 int mouseX = Raylib.GetMouseX();
@@ -27,7 +36,24 @@ public class Program
                 int cellY = mouseY / gVar.cellSize;
 
                 sim.ToggleCellValue(cellX, cellY);
+
+                clickedThisFrame = true;
             }
+            
+            // BugFix: Prevents multiple toggles in a single click by resetting the clickedThisFrame flag when the mouse button is released.
+            if(clickedThisFrame && Raylib.IsMouseButtonUp(MouseButton.Left))
+            {
+                clickedThisFrame = false;
+            }
+
+            // Handle keyboard input for controlling the simulation
+            /*
+                Space: Start/Stop the simulation
+                F: Increase FPS
+                S: Decrease FPS (not below MinFPS)
+                R: Fill the grid randomly (only when simulation is stopped)
+                C: Clear the grid (only when simulation is stopped)
+            */
 
             if(Raylib.IsKeyPressed(KeyboardKey.Space))
             {

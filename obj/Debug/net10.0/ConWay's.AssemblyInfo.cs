@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ConWay\'s")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+36983667856d163350ea8ce1387b7e82d174b3f0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c32ea320340f1303236d7b7fe31c363137ef4fb9")]
 [assembly: System.Reflection.AssemblyProductAttribute("ConWay\'s")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ConWay\'s")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
