@@ -78,4 +78,22 @@ public class Grid
         }
     }
 
+    public void ClearGrid()
+    {
+        for (int x = 0; x < rows; x++)
+        {
+            for (int y = 0; y < cols; y++)
+            {
+                grid[x, y] = false;
+            }
+        }
+    }
+
+    public void ToggleCellValue(int x, int y)
+    {
+        if (isWithinBounds(x, y))
+        {
+            grid[x, y] = !grid[x, y];
+        }
+    }
 }

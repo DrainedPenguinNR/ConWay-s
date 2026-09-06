@@ -11,7 +11,6 @@ public class Simulation
 
     public Simulation()
     {
-        grid.FillRandomly();
     }
 
     public void Start()
@@ -94,5 +93,28 @@ public class Simulation
         }
 
     }
+
+    public void Clear()
+    {
+        if (!IsRunning())
+        {
+            grid.ClearGrid();
+        }
+    }
     
+    public void FillRandomly()
+    {
+        if (!IsRunning())
+        {
+            grid.FillRandomly();
+        }
+    }
+
+    public void ToggleCellValue(int x, int y)
+    {
+        if (!IsRunning())
+        {
+            grid.ToggleCellValue(x, y);
+        }
+    }
 }

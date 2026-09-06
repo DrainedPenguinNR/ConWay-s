@@ -18,6 +18,17 @@ public class Program
         {
             //Main Loop
             //1. EventHandling
+            if(Raylib.IsMouseButtonDown(MouseButton.Left))
+            {
+                int mouseX = Raylib.GetMouseX();
+                int mouseY = Raylib.GetMouseY();
+
+                int cellX = mouseX / gVar.cellSize;
+                int cellY = mouseY / gVar.cellSize;
+
+                sim.ToggleCellValue(cellX, cellY);
+            }
+
             if(Raylib.IsKeyPressed(KeyboardKey.Space))
             {
                 if(sim.IsRunning())
@@ -44,6 +55,22 @@ public class Program
                     Raylib.SetTargetFPS(fps);
                 }
             }
+            else if(Raylib.IsKeyPressed(KeyboardKey.R))
+            {
+                if(!sim.IsRunning())
+                {
+                    sim.Clear();
+                    sim.FillRandomly();
+                }
+            }
+            else if (Raylib.IsKeyPressed(KeyboardKey.C))
+            {
+                if (!sim.IsRunning())
+                {
+                    sim.Clear();
+                }
+            }
+            
 
             //2. Update
             sim.Update();
